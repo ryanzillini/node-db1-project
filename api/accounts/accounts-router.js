@@ -34,9 +34,9 @@ router.post(
   checkAccountNameUnique,
   (req, res, next) => {
     // DO YOUR MAGIC
-    Account.create({ name: req.body.name, budget: req.body.budget })
+    Account.create({ name: req.name, budget: req.budget })
       .then((account) => {
-        res.json(account);
+        res.status(201).json(account);
       })
       .catch(next);
   }
@@ -53,7 +53,7 @@ router.put(
       const updatedPost = await Account.updateById(req.params.id, {
         name: req.body.name,
         budget: req.body.budget,
-      }).then((updated) => {
+      }).then(() => {
         return Account.getById(req.params.id);
       });
       res.json(updatedPost);
