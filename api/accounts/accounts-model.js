@@ -15,6 +15,7 @@ const create = (account) => {
   return db("accounts")
     .insert(account)
     .then((id) => {
+      console.log(account);
       return getById(id);
     });
 };
